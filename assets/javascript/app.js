@@ -14,9 +14,14 @@ $(document).ready(function () {
             method: "GET"
         }).then(function (response) {
 
-            var topicDiv = $("<div class='topic'>");
+            var imageUrl = response.data.image_original_url;
 
-            var rating = response.Rated;
+            var topicDiv = $("<img>");
+
+            topicDiv.attr("src", imageUrl);
+            topicDiv.attr("alt", "topic image");
+
+            var rating = response.data.rating;
 
             var pOne = $("<p>").text("Rating: " + rating);
 
