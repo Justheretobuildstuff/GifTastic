@@ -1,75 +1,32 @@
-<!DOCTYPE HTML>
-
-<html lang="en-us">
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="assets/javascript/app.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+  <meta charset="utf-8">
+  <title>Favorite Movies</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="assets/javascript/app.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
-<body id="background">
-    <div class="game">
-        <div class="container">
+<body>
 
-            <div class="row">
-                <div class="col-12">
-                    <h3 id="title">Totally Trivial Trivia!</h3>
-                    <h3 id="generatedNumber"> </h3>
-                </div>
-            </div>
-            <div>
-                <button id="start" type="button">Start</button>
-                <div id="time-left"></div>
-            </div>
-            <div id="triviaQuestions" class="row" class="col-12">
-                <h3 class="col-12">Time left:
-                    <span id="timer"></span>
-                </h3>
-                <form action="/success-page" class="simple-quiz">
-                    <div class="row" class="col-12" class="text-center">
-                        <h5>
-                            What’s the name of Napoleon’s llama in "Napoleon Dynamite"?
-                        </h5>
-                    </div>
-                    <div class="row" class="col-12" class="text-center">
-                        <label>
-                            <input type="radio" name="answers[1]" value="A" data-correct> Gina
-                        </label>
-                        <label>
-                            <input type="radio" name="answers[1]" value="B"> Tina
-                        </label>
-                        <label>
-                            <input type="radio" name="answers[1]" value="C"> Katrina
-                        </label>
-                        <label>
-                            <input type="radio" name="answers[1]" value="D"> Brad
-                        </label>
-                    </div>
-                        <button id="done" type="button">Done</button>
+  <div class="container">
+    <h1>My Favorite Things!</h1>
 
-                </form>
-            </div>
-            <div id="summary" class="row">
-                <h3 class="col-12">
-                    All Done!
-                </h3>
-                <h4 class="col-12">
-                    Correct Answers:
-                    <span id="correctAnswers"></span>
-                </h4>
-                <h4 class="col-12">
-                    Incorrect Answers:
-                    <span id="incorrectAnswers"></span>
-                </h4>
-                <h4 class="col-12">
-                    Unanswered:
-                    <span id="unanswered"></span>
-                </h4>
-            </div>
-        </div>
-    </div>
+    <div id="movies-view"></div>
+
+    <div id="buttons-view"></div>
+
+    <form id="movie-form">
+      <label for="movie-input">Add a Movie Bro</label>
+      <input type="text" id="movie-input">
+      <br>
+
+      <input id="add-movie" type="submit" value="Add a Movie Bro">
+    </form>
+  </div>
 </body>
 
 </html>
