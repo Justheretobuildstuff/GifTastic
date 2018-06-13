@@ -1,22 +1,21 @@
 $(document).ready(function() {
 
-      // Initial array of movies
-      var movies = ["The Matrix", "The Notebook", "Mr. Nobody", "The Lion King"];
+      var topics = ["Guitars", "Cars", "Technology"];
 
       // displayMovieInfo function re-renders the HTML to display the appropriate content
-      function displayMovieInfo() {
+      function displayTopicInfo() {
 
-        var movie = $(this).attr("data-name");
-        var queryURL = "https://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=trilogy";
+        var topic = $(this).attr("data-name");
+        var apiKey = cKS4IiTZ3IDKipuUbOff2eklN8zL04js;
+        var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=" + apiKey + "&tag=" + topic;
 
-        // Creating an AJAX call for the specific movie button being clicked
         $.ajax({
           url: queryURL,
           method: "GET"
         }).then(function(response) {
 
           // Creating a div to hold the movie
-          var movieDiv = $("<div class='movie'>");
+          var topicDiv = $("<div class='topic'>");
 
           // Storing the rating data
           var rating = response.Rated;
@@ -25,7 +24,7 @@ $(document).ready(function() {
           var pOne = $("<p>").text("Rating: " + rating);
 
           // Displaying the rating
-          movieDiv.append(pOne);
+          topicDiv.append(pOne);
 
           // Storing the release year
           var released = response.Released;
@@ -111,7 +110,3 @@ $(document).ready(function() {
 
 
 var topics = ["guitars", "cars", "technology"];
-
-for (i = 0; i < topics.length; i++) { 
-    text += topics[i] + "<br>";
-}
