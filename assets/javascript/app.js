@@ -2,7 +2,6 @@ $(document).ready(function () {
 
     var topics = ["Guitars", "Cars", "Technology"];
 
-    // displayMovieInfo function re-renders the HTML to display the appropriate content
     function displayTopicInfo() {
 
         var topic = $(this).attr("data-name");
@@ -42,40 +41,38 @@ $(document).ready(function () {
                 };
 
             };
+        });
+    }
 
-            function renderButtons() {
+    function renderButtons() {
 
-                $("#buttons-view").empty();
+        $("#buttons-view").empty();
 
-                for (var i = 0; i < topics.length; i++) {
+        for (var i = 0; i < topics.length; i++) {
 
-                    var a = $("<button>");
+            var a = $("<button>");
 
-                    a.addClass("topic-btn");
+            a.addClass("topic-btn");
 
-                    a.attr("data-name", topics[i]);
+            a.attr("data-name", topics[i]);
 
-                    a.text(topics[i]);
+            a.text(topics[i]);
 
-                    $("#buttons-view").append(a);
-                }
-            }
-
-            $("#add-topic").on("click", function (event) {
-                event.preventDefault();
-
-                var topic = $("#topic-input").val().trim();
-
-                topics.push(topic);
-
-                renderButtons();
-            });
-
-            $(document).on("click", ".topic-btn", displayTopicInfo);
-
-            renderButtons();
+            $("#buttons-view").append(a);
         }
-        )
-    };
-}
-};
+    }
+
+    $("#add-topic").on("click", function (event) {
+        event.preventDefault();
+
+        var topic = $("#topic-input").val().trim();
+
+        topics.push(topic);
+
+        renderButtons();
+    });
+
+    $(document).on("click", ".topic-btn", displayTopicInfo);
+
+    renderButtons();
+});
