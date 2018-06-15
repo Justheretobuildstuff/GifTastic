@@ -7,61 +7,75 @@ $(document).ready(function () {
 
         var topic = $(this).attr("data-name");
         var apiKey = "cKS4IiTZ3IDKipuUbOff2eklN8zL04js";
-        var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=" + apiKey + "&tag=" + topic;
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + topic + "&api_key=" + apiKey + "&limit=10";
 
         $.ajax({
             url: queryURL,
             method: "GET"
         }).then(function (response) {
 
-            var imageUrl = response.data.image_original_url;
+            var imageUrl = response.data;
 
-            var topicDiv = $("<img>");
+            for (var i = 0; i < imageUrl.length; i++) {
 
-            topicDiv.attr("src", imageUrl);
-            topicDiv.attr("alt", "topic image");
+                if (imageUrl[i].rating !== "r" && imageUrl[i].rating !== "pg-13") {
+                    var gifDiv = $("<div class='rating'>");
 
-            var rating = response.data.rating;
+                    var rating = imageUrl[i].rating;
 
-            var pOne = $("<p>").text("Rating: " + rating);
+                    var p = $("<p>").text("Rating: " + rating);
 
-            topicDiv.append(pOne);
+                    var topicDiv = $("<img>");
 
-            $("#topics-view").prepend(topicDiv);
-        });
+                    topicDiv.attr("src", imageUrl[i].images.fixed_height.url);
+                    topicDiv.attr("alt", "topic image");
 
-    }
+                    var rating = response.data.rating;
 
-    function renderButtons() {
+                    var pOne = $("<p>").text("Rating: " + rating);
 
-        $("#buttons-view").empty();
+                    gifDiv.append(p);
+                    topicDiv.append(pOne);
 
-        for (var i = 0; i < topics.length; i++) {
+                    $("#topics-view").prepend(topicDiv);
 
-            var a = $("<button>");
+                };
 
-            a.addClass("topic-btn");
+            };
 
-            a.attr("data-name", topics[i]);
+            function renderButtons() {
 
-            a.text(topics[i]);
+                $("#buttons-view").empty();
 
-            $("#buttons-view").append(a);
+                for (var i = 0; i < topics.length; i++) {
+
+                    var a = $("<button>");
+
+                    a.addClass("topic-btn");
+
+                    a.attr("data-name", topics[i]);
+
+                    a.text(topics[i]);
+
+                    $("#buttons-view").append(a);
+                }
+            }
+
+            $("#add-topic").on("click", function (event) {
+                event.preventDefault();
+
+                var topic = $("#topic-input").val().trim();
+
+                topics.push(topic);
+
+                renderButtons();
+            });
+
+            $(document).on("click", ".topic-btn", displayTopicInfo);
+
+            renderButtons();
         }
-    }
-
-    $("#add-topic").on("click", function (event) {
-        event.preventDefault();
-
-        var topic = $("#topic-input").val().trim();
-
-        topics.push(topic);
-
-        renderButtons();
-    });
-
-    $(document).on("click", ".topic-btn", displayTopicInfo);
-
-    renderButtons();
-
-});
+        )
+    };
+}
+};
